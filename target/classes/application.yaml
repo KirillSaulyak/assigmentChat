@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: coffee
+  datasource:
+    url: jdbc:postgresql://db/chat
+    username: postgres
+    password: 1
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    generate-ddl: true

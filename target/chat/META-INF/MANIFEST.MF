@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: kerich
+Build-Jdk: version 18.0.1
+Implementation-Title: chat
+Implementation-Version: 1.0.0
+Implementation-Vendor-Id: com.assigment
+Main-Class: ${start-class}
+

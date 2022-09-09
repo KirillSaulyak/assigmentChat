@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>room</title>
+    <th:block th:insert="fragment/head::head"></th:block>
+    <script src="/chat/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/chat/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/chat/assets/js/room/room.js"></script>
+</head>
+
+<body>
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-end my-3">
+            <button type="button" id="exit" class="btn btn-secondary">To leave the room</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Users</th>
+                    <th>Messages</th>
+                </tr>
+                </thead>
+                <tbody id="messages">
+                <th:block th:each="message : ${messages}">
+                    <tr>
+                        <td th:text="${message.username}">
+                            user.name
+                        </td>
+                        <td th:text="${message.message}">
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <textarea class="form-control" id="writeMessage" style="height: 100px"></textarea>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <button type="button" id="send" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</div>
+</body>
+<script th:inline="javascript">
+    let idRoom = [[${idRoom}]];
+</script>
+</html>

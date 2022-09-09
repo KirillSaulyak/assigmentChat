@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <th:block th:insert="fragment/head::head"></th:block>
+</head>
+<body class="d-flex justify-content-center">
+<form th:method="POST" th:action="@{/registration}" novalidate>
+    <div class="row">
+        <div class="col-auto">
+            <label for="login">Name for chat</label>
+            <input type="text"
+                   id="name"
+                   th:classappend="${validation != null} ? (${validation.hasFieldErrors('name')} ? 'is-invalid')"
+                   class="form-control"
+                   name="name"
+                   th:value="${registrationForm} != null ? ${registrationForm.name}"
+                   autocomplete="off"
+                   required/>
+            <div class="invalid-feedback"
+                 th:text="${validation != null} ? (${validation.hasFieldErrors('name')} ? ${validation.getFieldError('name').getDefaultMessage()})"
+            >
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto">
+            <label for="login">Login</label>
+            <input type="text"
+                   id="login"
+                   th:classappend="${validation != null} ? (${validation.hasFieldErrors('login')} ? 'is-invalid')"
+                   class="form-control"
+                   name="login"
+                   th:value="${registrationForm} != null ? ${registrationForm.login}"
+                   autocomplete="off"
+                   required/>
+            <div class="invalid-feedback"
+                 th:text="${validation != null} ? (${validation.hasFieldErrors('login')} ? ${validation.getFieldError('login').getDefaultMessage()})"
+            >
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto">
+            <label for="password">Password</label>
+            <input type="password"
+                   th:classappend="${validation != null} ? (${validation.hasFieldErrors('password')} ? 'is-invalid')"
+                   class="form-control"
+                   id="password"
+                   name="password"
+                   required>
+            <div class="invalid-feedback"
+                 th:text="${validation != null} ? (${validation.hasFieldErrors('password')} ? ${validation.getFieldError('password').getDefaultMessage()})"
+            >
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto">
+            <label for="passwordAgain">Password again</label>
+            <input type="password"
+                   th:classappend="${validation != null} ? (${validation.hasFieldErrors('passwordAgain')} ? 'is-invalid')"
+                   class="form-control"
+                   id="passwordAgain"
+                   name="passwordAgain"
+                   required>
+            <div class="invalid-feedback"
+                 th:text="${validation != null} ? (${validation.hasFieldErrors('passwordAgain')} ? ${validation.getFieldError('passwordAgain').getDefaultMessage()})"
+            >
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+        <div class="col-auto my-1">
+            <a href="./">
+                <button type="button" class="btn btn-secondary">Back</button>
+            </a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

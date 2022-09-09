@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>mainScreen</title>
+    <th:block th:insert="fragment/head::head"></th:block>
+    <script src="/chat/assets/js/mainPage/mainPage.js"></script>
+    <script src="/chat/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/chat/webjars/stomp-websocket/stomp.min.js"></script>
+</head>
+
+<body>
+<!-- Modal -->
+    <div class="modal fade" id="createRoomModal" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Creating a room</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="nameRoom" class="form-label">Name of the room</label>
+                    <input type="text" class="form-control" name="nameRoom" id="nameRoom">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="createRoom" class="btn btn-success" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col d-grid gap-1 ">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <h1>Main page</h1>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#createRoomModal">
+                        Create room
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" id="roomsPlace">
+                <div class="col-auto" th:each="room : ${rooms}">
+                    <a th:href="@{room/{idRoom}(idRoom = ${room.idRoom})}">
+                        <button type="button" class="btn btn-primary btn-lg" th:text="${room.name}"></button>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-end my-3">
+                    <form th:action="@{/logout}" th:method="POST" id="logoutForm">
+                        <button type="submit" id="exit" class="btn btn-secondary">Exit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
